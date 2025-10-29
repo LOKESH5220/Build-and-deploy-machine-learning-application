@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Test Case - Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 30px;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        .test-case {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b6b;
+        }
+        .parameter {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        .parameter:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #555;
+        }
+        .value {
+            color: #333;
+            font-family: monospace;
+        }
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .copy-btn:hover {
+            background: #5a6fd8;
+        }
+        .result {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1><i>🫀</i> Heart Disease Demo Test Case</h1>
+            <p>High Risk Patient - Will Show Positive Heart Disease Prediction</p>
+        </div>
+
+        <div class="test-case">
+            <h3>📋 Patient Profile: High-Risk Male, 67 years</h3>
+            <div class="parameter">
+                <span class="label">Age:</span>
+                <span class="value">67</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Gender (1=Male, 0=Female):</span>
+                <span class="value">1</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Chest Pain Type (0-3):</span>
+                <span class="value">4</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Resting Blood Pressure (mmHg):</span>
+                <span class="value">160</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Cholesterol (mg/dl):</span>
+                <span class="value">286</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Fasting Blood Sugar (1=Yes, 0=No):</span>
+                <span class="value">0</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Resting ECG (0-2):</span>
+                <span class="value">2</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Max Heart Rate (bpm):</span>
+                <span class="value">108</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Exercise Induced Angina (1=Yes, 0=No):</span>
+                <span class="value">1</span>
+            </div>
+            <div class="parameter">
+                <span class="label">ST Depression (mm):</span>
+                <span class="value">1.5</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Slope of ST Segment (0-2):</span>
+                <span class="value">2</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Number of Major Vessels (0-3):</span>
+                <span class="value">3</span>
+            </div>
+            <div class="parameter">
+                <span class="label">Thalassemia (1-3):</span>
+                <span class="value">3</span>
+            </div>
+        </div>
+
+        <div class="result">
+            <h3>🔴 Expected Prediction Result:</h3>
+            <p><strong>Heart Disease Detected</strong></p>
+            <p>Risk Probability: ~85-95%</p>
+            <p>⚠️ High Risk - Immediate medical consultation recommended</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="copy-btn" onclick="copyValues()">📋 Copy Values for Demo</button>
+            <button class="copy-btn" onclick="copyJSON()">📄 Copy JSON for API</button>
+        </div>
+
+        <div style="margin-top: 20px; padding: 15px; background: #e8f4fd; border-radius: 10px;">
+            <h4>💡 Demo Instructions:</h4>
+            <ol>
+                <li>Start your backend server: <code>cd backend && python app.py</code></li>
+                <li>Open your frontend application</li>
+                <li>Click "Copy Values for Demo" and paste into the form</li>
+                <li>Click "Analyze Heart Health" to see the prediction</li>
+                <li>The result should show "Heart Disease Detected" with high probability</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const demoValues = {
+            age: 67,
+            sex: 1,
+            cp: 4,
+            trestbps: 160,
+            chol: 286,
+            fbs: 0,
+            restecg: 2,
+            thalach: 108,
+            exang: 1,
+            oldpeak: 1.5,
+            slope: 2,
+            ca: 3,
+            thal: 3
+        };
+
+        function copyValues() {
+            const values = Object.entries(demoValues)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('\n');
+            
+            navigator.clipboard.writeText(values).then(() => {
+                alert('✅ Values copied to clipboard!\n\nPaste them into your form fields.');
+            });
+        }
+
+        function copyJSON() {
+            const json = JSON.stringify(demoValues, null, 2);
+            navigator.clipboard.writeText(json).then(() => {
+                alert('✅ JSON copied to clipboard!\n\nYou can use this for API testing.');
+            });
+        }
+    </script>
+</body>
+</html>
+
